@@ -1,5 +1,5 @@
 source ~/.bash_profile
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=$PATH:/home/john/applications/node/bin:$HOME/.rvm/bin:/opt/node-v4.2.4-linux-x64/bin:/opt/java/bin # Add RVM to PATH for scripting
 
 function sedReplace () {
   if [ -z "$1" ] || [ -z "$2" ]

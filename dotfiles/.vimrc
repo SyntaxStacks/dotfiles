@@ -6,7 +6,7 @@ set hidden                                 " Allow hiding buffers with unsaved c
 set nolist                                 " Hide invisibles by default
 set showcmd                                " Show incomplete cmds down the bottom
 set showmode                               " Show current mode down the bottom
-set cmdheight=2                            " Make the command line a little taller
+set cmdheight=1                            " Make the command line a little taller
 set ttyfast                                " More smooth screen redrawing
 set incsearch                              " Find the next match as we type the search
 set hlsearch                               " Highlight searches by default
@@ -39,6 +39,9 @@ set scrolloff=3                            " Keep 3 context lines above and belo
 set backspace=2                            " Allow backspacing over autoindent, EOL, and BOL
 set showmatch                              " Briefly jump to a paren once it's balanced
 set matchtime=2                            " (for only .2 seconds).
+
+" commands
+command E Ex
 
 " Remember cursor position
 set viminfo='10,\"100,:20,%,n~/.viminfo
@@ -121,15 +124,6 @@ function! PostThisGist()
   execute '!echo ' . cmd
 endfunction
 
-" NerdTree Config
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-" close vim if last window in nerd tree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-
-map <C-n> :NERDTreeToggle<CR>
 let mapleader = "m"
 nmap <Leader>n :call TestThisLine(0)<CR>
 
@@ -155,7 +149,6 @@ Plugin 'godlygeek/tabular'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
-Plugin 'lambdatoast/elm.vim'
 call vundle#end()
 
 " let g:snippets_dir = '~/code/dotfiles/vim/snippets'
@@ -163,9 +156,9 @@ let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['javascript']  = 'javascript/javascript, javascript/javascript-astrolabe'
 
-" Nerd Tree Arrows
-let g:NERDTreeDirArrows = 1
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-
 filetype on
+
+" powerline
+set rtp+=/home/john/.local/lib/python2.7/site-packages/powerline/bindings/vim
+set laststatus=2
+set t_Co=256

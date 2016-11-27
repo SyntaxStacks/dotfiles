@@ -1,8 +1,9 @@
-find ./dotfiles -name "*.x" | while read FILENAME; do
-	FILE=$(basename ${FILENAME%.*});
+find ./dotfiles -not -name ".x" -type f | while read FILENAME; do
+	FILE=$(basename ${FILENAME});
 	DIR=$( cd "$( dirname "${FILE}" )" && pwd )
+	eval "echo $FILE";
 	eval "rm ~/$FILE";
-	eval "ln -s $DIR/dotfiles/$FILE.x ~/$FILE";
+	eval "ln -s $DIR/dotfiles/$FILE ~/$FILE";
 done
 
 eval "ln -s $(pwd)/snippets ~/.vim/snippets"

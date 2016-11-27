@@ -50,3 +50,6 @@ export PATH=./bin:$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bi
 
 # bind ctrl+u to delete behind cursor, not the entire line
 bindkey \^U backward-kill-line
+
+export NVM_DIR="/home/john/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
