@@ -93,6 +93,10 @@ function! TestThisFile()
 	execute "! mocha " . test
 endfunction
 
+function! ShipIt()
+  execute "! pandaexpress -f \\\\\\\\VBOXSVR\\\\code\\\\mlb-playstation-app\\\\dist\\\\sony_ps4_trilithium\\\\lithium_ps4.self"
+endfunction
+
 function! Protractor()
 	let test = expand('%:p')
 	execute "! protractor test/conf/protractor.midway.conf.js --specs " . test
@@ -127,7 +131,7 @@ endfunction
 let mapleader = "m"
 nmap <Leader>n :call TestThisLine(0)<CR>
 
-nmap <Leader>d :call TestThisLine(1)<CR>
+nmap <Leader>d :call ShipIt()<CR>
 
 nmap <Leader>f :call TestThisFile()<CR>
 nmap <Leader>p :call Protractor()<CR>
@@ -145,10 +149,14 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-obsession'
 Plugin 'godlygeek/tabular'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
+Plugin 'sgur/vim-editorconfig'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'isRuslan/vim-es6'
 call vundle#end()
 
 " let g:snippets_dir = '~/code/dotfiles/vim/snippets'
@@ -156,9 +164,16 @@ let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['javascript']  = 'javascript/javascript, javascript/javascript-astrolabe'
 
-filetype on
+" Syntastic
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-" powerline
-set rtp+=/home/john/.local/lib/python2.7/site-packages/powerline/bindings/vim
-set laststatus=2
-set t_Co=256
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = 'eslint'
+
+filetype on

@@ -7,6 +7,10 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+if [ -f ~/.supersecrets ]; then
+    . ~/.supersecrets
+fi
+
 # export OS_AUTH_URL=%AUTH URL% e.g. https://lon.identity.api.rackspacecloud.com/v2.0/
 # export OS_AUTH_SYSTEM=rackspace_uk
 # export OS_REGION_NAME=%AUTH REGION% e.g. LON
